@@ -1,0 +1,3 @@
+handler:
+    resource: ../src/Feature
+    type: attribute
