@@ -1,5 +1,16 @@
 
 services:
+  app:
+    build:
+      context: .
+      dockerfile: ./docker/Dockerfile
+    ports:
+      - "8000:8000"
+    networks:
+      - moonvpn_network
+    depends_on:
+      - database
+
   database:
     image: postgres:alpine
     environment:
@@ -15,7 +26,12 @@ services:
       start_period: 60s
     volumes:
       - database_data:/var/lib/postgresql/data:rw
+    networks:
+      - moonvpn_network
 
 volumes:
   database_data:
 
+networks:
+  moonvpn_network:
+    driver: bridge

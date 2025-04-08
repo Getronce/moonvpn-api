@@ -64,6 +64,23 @@
         ],
         "post-update-cmd": [
             "@auto-scripts"
+        ],
+        "app:review:prepare": [
+            "@composer install --no-scripts",
+            "php bin/console cache:clear -e prod",
+            "php bin/console cache:warmup -e prod"
+        ],
+        "app:install": [
+            "@composer install --no-scripts",
+            "php bin/console doctrine:database:drop --force --if-exists",
+            "php bin/console doctrine:database:create",
+            "php bin/console doctrine:migrations:migrate -n",
+            "@auto-scripts"
+        ],
+        "app:update": [
+            "@composer install --no-scripts",
+            "php bin/console doctrine:migrations:migrate -n",
+            "@auto-scripts"
         ]
     },
     "conflict": {
