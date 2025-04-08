@@ -4,16 +4,14 @@ RUN apk update && apk add --no-cache \
     git \
     zip \
     unzip \
-    libxml2-dev \
-    libmcrypt-dev \
-    libzip-dev \
+    libpq-dev \
     supervisor \
-    && rm -rf /var/cache/apk/* /tmp/* \
+    bash \
+    curl \
+    && docker-php-ext-install pdo pdo_pgsql pgsql
 
-RUN docker-php-ext-install pdo pdo_pgsql
 
-RUN apk add --no-cache bash curl \
-    && curl -sS https://get.symfony.com/cli/installer | bash \
+RUN curl -sS https://get.symfony.com/cli/installer | bash \
     && mv /root/.symfony*/bin/symfony /usr/local/bin/symfony
 
 
