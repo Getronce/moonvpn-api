@@ -13,6 +13,7 @@ class LoginResponseEncoder
     {
         return new JsonResponse([
             'email' => $user->getEmail(),
+            'balance' => $user->getBalance(),
         ], Response::HTTP_OK);
     }
 

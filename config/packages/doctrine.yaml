@@ -21,8 +21,8 @@ doctrine:
             App:
                 type: attribute
                 is_bundle: false
-                dir: '%kernel.project_dir%/src/Feature/User/Domain'
-                prefix: 'App\Feature\User\Domain'
+                dir: '%kernel.project_dir%/src/Feature'
+                prefix: 'App\Feature'
                 alias: App
         controller_resolver:
             auto_mapping: false

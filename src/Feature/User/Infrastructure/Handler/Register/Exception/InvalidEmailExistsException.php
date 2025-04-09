@@ -6,6 +6,6 @@ class InvalidEmailExistsException extends \Exception
 {
     public function __construct()
     {
-        parent::__construct('Invalid email address');
+        parent::__construct('Данная почта уже зарегистрирована');
     }
 }
