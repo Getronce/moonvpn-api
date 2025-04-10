@@ -2,7 +2,6 @@
 
 namespace App\Feature\Subscription\Infrastructure\Handler\GetAllSubscriptionsUser;
 
-use App\Feature\Subscription\Infrastructure\Handler\GetAllSubscriptionsUser\Exception\NoSubscriptionsFoundForUserException;
 use App\Feature\Subscription\Infrastructure\UseCase\GetAllSubscriptionsUser\GetAllSubscriptionsUserInteractor;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\JsonResponse;
@@ -23,7 +22,7 @@ class GetAllSubscriptionsUserRequestHandler extends AbstractController
             $subscriptions = $this->getAllSubscriptionsUserInteractor->__invoke($id);
 
             return $this->getAllSubscriptionsUserResponseEncoder->encode($subscriptions);
-        } catch (NoSubscriptionsFoundForUserException $e) {
+        } catch (\RuntimeException $e) {
             return $this->getAllSubscriptionsUserResponseEncoder->encodeNoSubscriptionFoundUserException($e);
         }
     }

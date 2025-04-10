@@ -3,7 +3,6 @@
 namespace App\Feature\Subscription\Infrastructure\Handler\GetAllSubscriptionsUser;
 
 use App\Feature\Subscription\Domain\Entity\Subscription;
-use App\Feature\Subscription\Infrastructure\Handler\GetAllSubscriptionsUser\Exception\NoSubscriptionsFoundForUserException;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Response;
 
@@ -21,7 +20,7 @@ class GetAllSubscriptionsUserResponseEncoder
         return new JsonResponse($data, Response::HTTP_OK);
     }
 
-    public function encodeNoSubscriptionFoundUserException(NoSubscriptionsFoundForUserException $exception): JsonResponse
+    public function encodeNoSubscriptionFoundUserException(\RuntimeException $exception): JsonResponse
     {
         return new JsonResponse(['error' => $exception->getMessage()], Response::HTTP_NOT_FOUND);
     }

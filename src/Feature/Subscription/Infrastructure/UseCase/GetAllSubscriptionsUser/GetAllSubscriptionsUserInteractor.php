@@ -4,7 +4,6 @@ namespace App\Feature\Subscription\Infrastructure\UseCase\GetAllSubscriptionsUse
 
 use App\Feature\Subscription\Domain\Entity\Subscription;
 use App\Feature\Subscription\Domain\Repository\SubscriptionRepository;
-use App\Feature\Subscription\Infrastructure\Handler\GetAllSubscriptionsUser\Exception\NoSubscriptionsFoundForUserException;
 
 class GetAllSubscriptionsUserInteractor
 {
@@ -15,16 +14,9 @@ class GetAllSubscriptionsUserInteractor
 
     /**
      * @return Subscription[]
-     *
-     * @throws NoSubscriptionsFoundForUserException
      */
     public function __invoke(int $userId): array
     {
-        $subscription = $this->subscriptionRepository->findSubscriptionByUserId($userId);
-        if (null === $subscription) {
-            throw new NoSubscriptionsFoundForUserException();
-        }
-
-        return $subscription;
+        return $this->subscriptionRepository->findSubscriptionByUserId($userId);
     }
 }

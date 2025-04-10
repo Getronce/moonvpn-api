@@ -25,14 +25,8 @@ class SubscriptionRepository extends ServiceEntityRepository
     /**
      * @return Subscription[]
      */
-    public function findSubscriptionByUserId(int $userId): ?array
+    public function findSubscriptionByUserId(int $userId): array
     {
-        $subscriptions = $this->findBy(['user' => $userId]);
-
-        if (empty($subscriptions)) {
-            return null;
-        }
-
-        return $subscriptions;
+        return $this->findBy(['user' => $userId]);
     }
 }
