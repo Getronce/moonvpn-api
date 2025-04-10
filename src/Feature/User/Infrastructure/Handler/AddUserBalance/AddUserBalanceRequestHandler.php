@@ -19,7 +19,7 @@ class AddUserBalanceRequestHandler extends AbstractController
     ) {
     }
 
-    #[Route('api/user/{id}/add-balance', methods: 'POST', format: 'json')]
+    #[Route('api/user/{id}/balance/add', methods: 'POST', format: 'json')]
     public function index(int $id, #[MapRequestPayload] AddUserBalanceRequest $request): JsonResponse
     {
         $params = $this->addUserBalanceDecoder->decode($request);

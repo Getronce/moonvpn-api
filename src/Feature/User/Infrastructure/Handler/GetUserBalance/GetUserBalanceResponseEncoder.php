@@ -13,7 +13,7 @@ class GetUserBalanceResponseEncoder
     {
         return new JsonResponse([
             'balance' => $user->getBalance(),
-        ], Response::HTTP_CREATED);
+        ], Response::HTTP_OK);
     }
 
     public function encodeUserNotFoundException(UserNotFoundException $exception): JsonResponse

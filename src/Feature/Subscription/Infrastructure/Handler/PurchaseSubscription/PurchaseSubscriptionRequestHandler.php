@@ -20,7 +20,7 @@ class PurchaseSubscriptionRequestHandler extends AbstractController
     ) {
     }
 
-    #[Route('api/user/{id}/subscription', methods: 'POST', format: 'json')]
+    #[Route('api/user/{id}/subscription/purchase', methods: 'POST', format: 'json')]
     public function index(int $id, #[MapRequestPayload] PurchaseSubscriptionRequest $request): JsonResponse
     {
         $params = $this->purchaseSubscriptionDecoder->decode($request);

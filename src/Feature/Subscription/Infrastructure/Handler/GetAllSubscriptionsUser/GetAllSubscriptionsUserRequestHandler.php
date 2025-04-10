@@ -16,7 +16,7 @@ class GetAllSubscriptionsUserRequestHandler extends AbstractController
     ) {
     }
 
-    #[Route('api/user/{id}/get-subscriptions', methods: 'GET', format: 'json')]
+    #[Route('api/user/{id}/subscriptions', methods: 'GET', format: 'json')]
     public function index(int $id): JsonResponse
     {
         try {

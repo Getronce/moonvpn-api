@@ -16,7 +16,7 @@ class GetUserBalanceRequestHandler extends AbstractController
     ) {
     }
 
-    #[Route('api/user/{id}/update-balance', methods: 'GET', format: 'json')]
+    #[Route('api/user/{id}/balance', methods: 'GET', format: 'json')]
     public function index(int $id): JsonResponse
     {
         try {
