@@ -26,4 +26,15 @@ class UserRepository extends ServiceEntityRepository
     {
         return $this->findOneBy(['email' => $email]);
     }
+
+    public function findById(int $id): ?User
+    {
+        return $this->find($id);
+    }
+
+    public function saveBalance(User $user): void
+    {
+        $this->getEntityManager()->persist($user);
+        $this->getEntityManager()->flush();
+    }
 }

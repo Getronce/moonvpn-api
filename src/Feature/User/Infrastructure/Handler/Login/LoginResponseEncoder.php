@@ -12,7 +12,9 @@ class LoginResponseEncoder
     public function encode(User $user): JsonResponse
     {
         return new JsonResponse([
+            'id' => $user->getId(),
             'email' => $user->getEmail(),
+            'balance' => $user->getBalance(),
         ], Response::HTTP_OK);
     }
 
