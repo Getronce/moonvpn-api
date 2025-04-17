@@ -1,17 +1,30 @@
 
 services:
-  database:
-    image: postgres:alpine
-    environment:
-      POSTGRES_DB: moonvpn-api
-      POSTGRES_PASSWORD: root
-      POSTGRES_USER: root
+  app:
+    build:
+      context: .
+      dockerfile: ./docker/Dockerfile
     ports:
-      - "5432:5432"
-    volumes:
-      - database_data:/var/lib/postgresql/data:rw
+      - "8000:8000"
     networks:
-      - moonvpn_network
+      - application_network
+    depends_on:
+      - mysql
+      - rabbitmq
+
+  mysql:
+    image: mariadb:10.11.2
+    environment:
+      MYSQL_ROOT_PASSWORD: root
+      MYSQL_DATABASE: moonvpn-api
+      MYSQL_USER: root
+      MYSQL_PASSWORD: root
+    volumes:
+      - "application_database:/var/lib/mysql"
+    networks:
+      - application_network
+    ports:
+      - "3306:3306"
 
   rabbitmq:
     image: rabbitmq:3.8-management-alpine
@@ -22,11 +35,11 @@ services:
       - "15672:15672"
       - "5672:5672"
     networks:
-      - moonvpn_network
+      - application_network
 
 volumes:
-  database_data:
+  application_database:
 
 networks:
-  moonvpn_network:
+  application_network:
     driver: bridge
